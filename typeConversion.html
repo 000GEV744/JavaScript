@@ -26,6 +26,26 @@
     // shows a message and waits for the user to press “OK” or “Cancel”. It returns true for OK and false for Cancel/Esc.
     result = confirm("Are you a wanderer?");
     document.write(`<h3>${result}</h3>`);
+
+    //switch case where type matters 
+    let arg = prompt("Enter a value?");
+    //arg variable get the string value so here the type will mattter 
+switch (arg) {
+  case '0':
+  case '1':
+    alert( 'One or zero' );
+    break;
+
+  case '2':
+    alert( 'Two' );
+    break;
+
+  case 3:  //type here is number so it will never execute 
+    alert( 'Never executes!' );
+    break;
+  default:
+    alert( 'An unknown value' );
+}
     </script>
 
 
