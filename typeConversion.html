@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Type Conversion</title>
+    
+    
+    <script type="text/javascript"> 
+    "use strict"
+    //alert converts any value to a string to show it. 
+    //mathematical operators convert values to numbers.
+    //string conversion :
+    let value = true;
+    alert(typeof(value)); //boolean 
+    value = String(value);
+    alert(typeof(value)); //string 
+
+    //prompt and alert and confirm:
+    //alert shows message and pauses scipt execution until the user presses "OK"
+    //whereas prompt shows a modal windo with a text message, an input field for the visito, and the buttons OK/Cancel.
+    let result  = prompt("What is your name ?");
+    alert("your name is " + result);
+    confirm
+    // shows a message and waits for the user to press “OK” or “Cancel”. It returns true for OK and false for Cancel/Esc.
+    result = confirm("Are you a wanderer?");
+    document.write(`<h3>${result}</h3>`);
+    </script>
+
+
+</head>
+<body>
+    
+</body>
+</html>
