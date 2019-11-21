@@ -20,7 +20,36 @@
       helloU("shivam Gupta");// no value for salry param is given hence the function will take it as "undefined"
 
     //   If a function does not return a value, it is the same as if it returns undefined
-    </script>
+
+
+
+    /* there is another way of creating function
+    i.e called function expressoin*/
+     let funcA = function(a, b){
+        document.write(`<h2>total : ${a+b}</h2>`);
+     }
+
+     funcA(10,20); //calling the funcA
+
+
+     //arrow function:
+     let sum = (a, b)=> (a+b);
+     document.write(sum(8, 9));
+     /*With curly braces: (...args) => { body } – brackets allow us to write multiple statements inside the function, 
+     but we need an explicit return to return something.*/
+
+
+     let ask = (question, yes, no)=>{
+         if(confirm(question)){
+             return yes;
+         }else{
+             return no;
+         }
+     }
+
+     document.write(ask("are you 18+", " give access !", " Sorry you don't have the access"));
+
+</script>
 </head>
 <body>
     
