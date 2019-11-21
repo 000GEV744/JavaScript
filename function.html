@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>function practice</title>
+    <script type="text/javascript">
+      
+      function name(urName, age = 20){  //here we set the default value  for age i.e 20 and if given in parameter then it will take the value given in parameter (modern javascript)
+          alert("your name is: "+ urName+ "your age is : "+age);
+      }
+      function helloU(name, salary){
+          document.write(`your name is ${name} and you get Rs. ${salary}`);
+      }
+
+      let age = 120;
+      name("ambikesh Gupta");
+      name("Anuj singh", 30); //if pararmeter is not provided, then its valu becomes undefined.
+      helloU("shivam Gupta");// no value for salry param is given hence the function will take it as "undefined"
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
