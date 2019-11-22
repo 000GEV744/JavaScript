@@ -1,0 +1,84 @@
+Debugging is the process of finding and fixing errors within a script.
+A breakpoint is a point of code where the debugger will automatically pause the JavaScript execution.
+    1. While the code is paused, we can examine current variables, execute commands in the console etc. In other words, we can debug it.
+    2. We can always find a list of breakpoints in the right panel. That’s useful when we have many breakpoints in various files. It allows us to:
+    3. Quickly jump to the breakpoint in the code (by clicking on it in the right panel).
+    4. Temporarily disable the breakpoint by unchecking it.
+    5. Remove the breakpoint by right-clicking and selecting Remove.
+
+> Conditional breakpoints:
+Right click on the line number allows to create a conditional breakpoint. It only triggers when the given expression is truthy.
+That’s handy when we need to stop only for a certain variable value or for certain function parameters.
+
+> We can also pause the code by using the debugger command in it, like this:
+function hello(name) {
+  let phrase = `Hello, ${name}!`;
+
+  debugger;  // <-- the debugger stops here
+
+  say(phrase);
+}
+
+
+>// backtick quotes ` allow to split the string into multiple lines
+
+(npm is a JavaScript package installer).
+
+
+
+> Automated testing with Mocha:
+Automated testing means that tests are written separately, in addition to the code. They run our functions in various ways and compare results with the expected.
+
+
+>Behaviour driven development: (BDD)
+before creating the code of pow, we can imagine what the function should do and describe it.
+suh description is called a SPECIFICATION or in short, a spec and contains descriptions of use cases together with tests for them.
+for ex.
+  describe("pow", function() {
+    it("raises to n-th power", function(){
+        assert.equal(pow(2,3), 8);
+            });
+
+  });
+
+  there are three main building blocks that you can see above :
+    1. describe("title", fucntion(){...})  => what functionality we are describing. In our case we're describing the function "pow".
+    2. it("use case description", fucntion(){...}) => here the second argument is a function that tests it.
+    3. assert.equl(value1, value2) => the code inside the it block, if the implementation is correct, should execute without errors.
+
+
+    here, we'll be using the following Javascript libraries for tests:
+       1. Mocha: the core framework; it provides common testing functions including describe and it and the main function that runs tests.
+
+       2. chai: th library with many assertions. it allows to use a lot of different assertions,for now we need only assert.equal.
+
+       3. sinon: a library to spy over fucntions, emulate built-in functions and more.
+
+
+
+
+> Polyfills and Babel:
+When we use modern features of the language, some engines may fail to support such code. Just as said, not all features are implemented everywhere.
+
+Here Babel comes to the rescue.
+
+Babel is a trnspiler. It rewrites the modern Javascript code into the previous standard.
+Actually, there are two parts in babel.
+    1. First, the transpiler program, which rewrites the code. 
+        The developer runs it on their own computer.
+         It rewrites the code into the older standard. And then the code is delivered to the website for users. 
+         Modern project build systems like webpack provide means to run transpiler automatically on every code change, so that very easy to integrate into development process.
+
+    2. Second, the polyfill.
+       New language features may include new built-in functions and syntax constructs. 
+       The transpiler rewrites the code, transforming syntax constructs into older ones. But as for new built-in functions, we need to implement them. 
+       JavaScript is a highly dynamic language, scripts may add/modify any functions, so that they behave according to the modern standard.
+       A script that updates/adds new functions is called “polyfill”. 
+       It “fills in” the gap and adds missing implementations.
+
+Two interesting polyfills are:
+
+ 1. core js that supports a lot, allows to include only needed features.
+ 2. polyfill.io service that provides a script with polyfills, depending on the features and user’s browser.
+
+So, if we’re going to use modern language features, a transpiler and a polyfill are necessary.
