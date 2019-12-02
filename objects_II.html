@@ -118,6 +118,29 @@
       for (key in obj1) {
         document.write(`  ${key} :: ${obj1[key]}`);
       }
+
+      let users = {
+        name: "Shivam gupta",
+        age: 20,
+        sex: "Transgender",
+        sizes: {
+          height: 182,
+          width: 50
+        }
+      };
+
+      let clone = Object.assign({}, users);
+      document.write(clone.sizes == users.sizes);
+      clone.sizes = Object.assign({}, users.sizes);
+      clone.sizes.height = 199;
+      for (keyy in clone.sizes) {
+        document.write(` ${keyy} :: ${clone.sizes[keyy]} `);
+      }
+      for (key in users.sizes) {
+        document.write(` ${key} :: ${users.sizes[key]} `);
+      }
+
+      //*********************Objects end <END>******************
     </script>
   </head>
   <body></body>
