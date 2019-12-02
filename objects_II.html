@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script type="text/javascript">
+      //***********Existance check<START>*****************
+      //accessing a non existing property just returns "undefined".
+      //There exists a special operator "in" to check for the existance fo a property
+      //the sytax is <"Key" in object>
+
+      let users = {
+        name: "Anuj Singh",
+        age: 30
+      };
+      let res = "age" in users;
+      document.write(`<h2>${res}</h2>`);
+
+      //we should use "in" for checking the properties that may store "undefined"
+      //Usually, the strict comparison "=== undefined" check the property existance just fine.
+      // But there’s a special case when it fails, but "in" works correctly.
+      let obj = {
+        test: undefined
+      };
+      alert(obj.test); // it's undefined, so - no such property?
+      alert("test" in obj); // true, the property does exist!
+      //***********EXixtance check<END>*****************
+
+      //****************for-in loop<START>*****************
+      let emp = {
+        empid: 1,
+        name: "ANUJ Singh",
+        age: 30,
+        sex: "M"
+      };
+
+      for (key in emp) {
+        document.write(`${key} :: ${emp[key]} `);
+      }
+      //****************for-in loop<END>*****************
+
+      //***********Ordered like an object<START>*****************
+      let countryCodes = {
+        "48": "Germany ",
+        "49": "Switzerland",
+        "44": "Great Bretain"
+      };
+      for (codes in countryCodes) {
+        alert(codes); //will return in sorted order i.e 44, 48, 49
+      }
+      //The “integer property” term here means a string that can be converted to-and-from an integer without a change.
+      //So, “49” is an integer property name, because when it’s transformed to an integer number and back,
+      //it’s still the same. But “+49” and “1.2” are not  and
+      // if the keys are non-integer, then they are listed in the creation order,
+
+      let countryCodes1 = {
+        "+48": "Germany ",
+        "+49": "Switzerland",
+        "+44": "Great Bretain",
+        "+91": "india"
+      };
+      for (codes in countryCodes1) {
+        alert(+codes); //will return the order in which we've inseted them into the object
+      }
+      //***********Ordered like an object<END>*****************
+
+      //*************Copying by References<START>******************
+      //A variable stores not the object itself, but its "address of memory", in other words "a reference" to it.
+      let users1 = {
+        name: "Ambikesh Gupta"
+      };
+      //so here the users1 has the refrence to the object whereas the object is stored somewhere in memory
+      //when the object variable is copied - the reference is copied, the object is not duplicated.
+      //If we imagine an object as a cabinet, then a variable is a key to it.
+      let admin = users1; //copy the reference
+
+      //*************Copying by References<START>******************
+
+      //************Comparison by reference<START>*******************
+      //the equality(==) and strict equality(===) operators, both works exactly the same.
+      //if two variables reference the same object, they are equal
+      let a = {};
+      let b = a;
+      document.write(a == b); //return true.
+
+      let i = {};
+      let j = {};
+
+      document.write("\n result ::" + (i == j));
+      //************Comparison by reference<END>*********************
+
+      //******************Cloning and merging<START>****************
+      //cloning using the loop
+      let users = {
+        name: "tushit mishra",
+        age: 30
+      };
+      let clone = {};
+      for (key in users) {
+        clone[key] = users[key];
+      }
+
+      clone.name = "ANUJ SINGH ";
+      for (props in clone) {
+        document.write(clone[props]); //print ANUJ SINGH  30
+      }
+
+      //using the method Object.assign() instead of loop::
+
+      //The syntax is: Object.assign(dest, [src1, src2, src3...])
+      //   Arguments dest, and src1, ..., srcN (can be as many as needed) are objects.
+      //It copies the properties of all objects src1, ..., srcN into dest.
+      //In other words, properties of all arguments starting from the 2nd are copied into the 1st. Then it returns dest
+
+      let obj1 = Object.assign({}, users);
+      for (key in obj1) {
+        document.write(`  ${key} :: ${obj1[key]}`);
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
