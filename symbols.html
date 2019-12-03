@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script type="text/javascript">
+      // A symbol is a unique identifier
+      let id = Symbol();
+      //upo creation , we can give some description(also called symbol name)
+      let id1 = Symbol("id");
+      //most values in javascript support implicit conversion to a string, but symbols are special they can't be auto-convert.
+      //   alert(id1); //will show error
+      //if we really want to show a symbol then we need to expicitly call .toString() on it.
+      alert(id.toString());
+      // or we can use .description to show the only description property of the symbol
+
+      //************symbols allow us to create the hidden properties of an object, that no part of the code can accedentally
+      //overwrite or access.*****************
+      let users = {
+        name: "Anuj Singh",
+        sex: "M",
+        email: "anuj60360@gmail.com"
+      };
+      let id2 = Symbol("id2");
+      users[id2] = 1;
+      alert(users[id2]);
+
+      //how symbol() and string are different : generally if our object is being shared with other code
+      //then that code will not be able to see the symbol ientifier that the present code has designed.
+      //whereas if that other code also creates and symbol identifier then there will be no coflicts
+      //as symbols are always uniqu and two symbols can never be same. hence ter will be no conflicts.
+      //if we will use string for same then there wil definitly be the conflicts.
+
+      //**************symbols in object literals<START>************
+      //if we wanna use symbols in object literals  then we need square brackets in it.
+      let user1 = {
+        name: "Anuj Singh",
+        sex: "M",
+        email: "anuj60360@gmail.com",
+        [id]: 123
+      };
+
+      document.write(user1[id] + "\n"); // symbols are skipped by for..in loop
+      //in contrast, Object.assing() copies both string and symbolic properties.
+      //**************symbols in object literals<END>************
+
+      //*************Global symbols<START>*****************
+      /* sometimes, we want the same named symbols to be the same entities. For instance,
+            different parts of our application want to access symbol "id" meaning exactly the same property.*/
+      let qw = Symbol.for("id2");
+      let qw1 = Symbol.for("id2");
+      document.write(qw == qw1);
+      /*For global symbols, not only Symbol.for(key) returns a symbol by name,
+       but there’s a reverse call: Symbol.keyFor(sym),
+       that does the reverse: returns a name by a global symbol.*/
+      document.write(" " + Symbol.keyFor(qw) + " ");
+      document.write(" " + Symbol.keyFor(qw1) + " ");
+      //*************Global symbols<END>*****************
+    </script>
+  </head>
+  <body></body>
+</html>
