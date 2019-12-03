@@ -27,6 +27,21 @@
       document.write(`${credentials.otp()}<br> ${credentials.login()} <br>`);
       document.write(credentials.sayHi());
       //**********************<END>**********************************
+      //***************constructor - new Operator<START>****************
+      //main purpose of using theconstructor is to implement reusable object creation code.
+      function User(name) {
+        alert(new.target);
+        (this.name = name), (this.isAdmin = false);
+      }
+      let anuj = new User("Anuj");
+      alert(anuj.name);
+      alert(anuj.isAdmin);
+
+      //*****constructor mode test
+      /* a function, we can check whether 
+      it was called with new or without it, using a special new.target property.
+      It is empty for regular calls and equals the function if called with new*/
+      //**********************<END>**********************************
     </script>
   </head>
   <body></body>
