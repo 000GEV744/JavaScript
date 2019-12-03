@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script type="text/javascript">
+        let arr = []; //mostly used for creating an empty array
+        //array can store elements of any type
+        arr = ["Anuj", "Ambikesh", "Shivam", "Pandey", "Tushit"];
+        alert(arr[1]);
+        /*methods are push/pop/shift/unshift
+        shift :: will take the first element and advance the array
+        pop :: remove the element from the end
+        push :: append the element at the end
+        unshift :: add the elemnent the begining of the array.
+        */
+
+        //********SPLICE********** to delete an element in array
+        /*arr.splice(index[, deleteCount, elem1, ..., elemN])
+          It starts from the position index:
+          removes deleteCount elements and then inserts elem1, ..., elemN at their place.
+          Returns the array of removed elements.*/
+        arr.splice(0, 3, "Anuj Singh", "Ambikesh Gupta", "Shivam Gupta");
+        for (let names of arr) {
+          alert(names);
+        }
+        //*********SLICE********* to create a new subarray
+        /*arr.slice([start], [end])
+          It returns a new array copying to it all items from index start to end (not including end).
+          Both start and end can be negative,
+          in that case position from array end is assumed.*/
+        document.write(arr.slice(1, 4));
+        document.write(" <br>" + arr.slice(-2, -1));
+
+        //***********FOREACH******** it allows you to run a function for every element in the array
+        arr.forEach((items, index, arr) => {
+          alert(`${items} is at index ${index} \n in ${arr}`);
+        });
+
+        //********SEARCHING IN ARRAY******* index/lastIndexOf/includes
+        /*arr.indexOf(item, from) – looks for item starting from index from,
+        and returns the index where it was found, otherwise -1.
+        arr.lastIndexOf(item, from) – same, but looks for from right to left.
+        arr.includes(item, from) – looks for item starting from index from, returns true if found.
+        */
+        arr.push("Anuj");
+        arr.unshift(1);
+        arr.push("Pandey");
+        document.write("<br>" + arr.indexOf("Pandey"));
+        document.write("<br>" + arr.lastIndexOf("Pandey"));
+        alert(arr.includes(1));
+
+      //***********FIND & FILTER**************
+      //FIND :: If it returns true, the search is stopped, the item is returned. If nothing found, undefined is returned.
+      let users = [
+        { id: 1, name: "Anuj Singh", sex: "M" },
+        { id: 2, name: "Ambikesh gupta", sex: "M" },
+        { id: 3, name: "Tushit Mishra", sex: "M" },
+        { id: 4, name: "Shivam Gupta", sex: "F" }
+      ];
+      let user = users.find(item => item.sex == "M" && item.id == 3);
+      document.write("<br>" + user.name);
+
+      //FILTER :: 
+    </script>
+  </head>
+  <body></body>
+</html>
