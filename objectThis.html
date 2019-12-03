@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script type="text/javascript">
+      //*******this keyword and functionsor methods of Objects<START>*********
+      let credentials = {
+        userId: "anuj60361",
+        pwd: "qwu#76&&^bcdyu",
+        sayHi() {
+          return `${this.userId} is saying hello !`;
+        }
+      };
+
+      function login() {
+        return this.userId + " logged in !";
+      }
+
+      credentials.otp = function() {
+        return "otp generated !";
+      };
+
+      credentials.login = login;
+      document.write(`${credentials.otp()}<br> ${credentials.login()} <br>`);
+      document.write(credentials.sayHi());
+      //**********************<END>**********************************
+    </script>
+  </head>
+  <body></body>
+</html>
