@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script type="text/javascript">
+      //************Iterables*************
+      /*to make the range iterable we need to add a method to the object named Symbol.iterator
+      this method must return an iterator - an object with method next. and for...of works only with that returned object
+      when for..of needs next value, it calls next on that object.*/
+      let range = {
+        from: 1,
+        to: 5
+      };
+
+      // 1. call to for..of initially calls this
+      range[Symbol.iterator] = function() {
+        // ...it returns the iterator object:
+        // 2. Onward, for..of works only with this iterator, asking it for next values
+        return {
+          current: this.from,
+          last: this.to,
+
+          // 3. next() is called on each iteration by the for..of loop
+          next() {
+            // 4. it should return the value as an object {done:.., value :...}
+            if (this.current <= this.last) {
+              return { done: false, value: this.current++ };
+            } else {
+              return { done: true };
+            }
+          }
+        };
+      };
+
+      // now it works!
+      for (let num of range) {
+        console.log(num); // 1, then 2, 3, 4, 5
+      }
+      console.log("**************######************");
+      //other way to make the object iterable ::
+      let range2 = {
+        from: 2,
+        to: 7,
+        [Symbol.iterator]() {
+          this.current = this.from;
+          return this;
+        },
+        next() {
+          if (this.current <= this.to) {
+            return { done: false, value: this.current++ };
+          } else {
+            return { done: true };
+          }
+        }
+      };
+      for (num of range) {
+        console.log(num);
+      }
+      console.log("**************######************");
+      //***calling an iterator explicitly
+      let str = "Hello";
+      let iterator = str[Symbol.iterator]();
+      while (true) {
+        let result = iterator.next();
+        if (result.done == true) break;
+        else console.log(result.value);
+      }
+      console.log("**************######************");
+      //***there is an universal emthod tht takes an array like or iterable value and makes a real "array"
+      //so that we can call all the arra methods. Array.from()::
+      let numb = {
+        1: "hello",
+        2: "world",
+        length: 2
+      };
+      let arr = Array.from(numb);
+      console.log(arr.pop());
+      for (key in numb) {
+        console.log(key + "::" + numb[key]);
+      }
+      console.log(arr);
+
+      console.log("**************######************");
+      let result = Array.from(range);
+
+      console.log(result.pop());
+      console.log(result);
+      console.log("**************######************");
+    </script>
+  </head>
+  <body></body>
+</html>
