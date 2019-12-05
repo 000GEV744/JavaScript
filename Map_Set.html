@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script type="text/javascript">
+      //in objects, the kye should be either string or symbol. that's the major difference btween map and objects
+      // that maps don't restrict on datatype of keys and it maintains the insertoin order.
+      //map is a collection of  keyed dataItems like in objects
+      let mp = new Map();
+      //we will get to see that it allows every type of key  in it .
+      mp.set("1", "Anuj Singh");
+      mp.set(1, "physics").set(true, "guwahati");
+      //every map.set() call returns the map itself, so we can chain the calls;
+
+      console.log(mp.get(1));
+      console.log(mp.get(true));
+      console.log(mp.size);
+      //maps can also use objects as keys
+      //lets write the code to know the number of users are currently accessing the user1
+      let count = 0;
+      let user1 = {
+        name: "John",
+        sex: "M",
+        email: "john123@gmail.com",
+        phone_Num: 8898983637
+      };
+      let visitCount = new Map();
+      visitCount.set(user1, ++count);
+      console.log(visitCount.get(user1));
+      //using object as a key is a notable feature of map where with objects, using string keys is fine
+      //but when we'll use object as a key then it's not fine ex::
+      console.log("***************####************");
+      let visitCount1 = {};
+      visitCount1.user1 = ++count;
+      console.log(visitCount1);
+      console.log("***************####************");
+      //iteration over map
+      /*there are three methods map.keys(), map.values(), map.entries()*/
+      let recipe = new Map([
+        ["cucumber", 70],
+        ["tomato", 55],
+        ["ladyfinger", 60],
+        ["clove", 39]
+      ]); //when a Map is created we can make an array of key-value pairs to initialize it
+      for (let veges of recipe.keys()) {
+        console.log(veges);
+      }
+      console.log("***************");
+      for (let amount of recipe.values()) {
+        console.log(amount);
+      }
+      console.log("***************");
+      for (let entries of recipe.entries()) {
+        console.log(entries);
+      }
+      //map has built in forEach() function, like in array
+      recipe.forEach((values, key, recipe) => {
+        console.log(`${key} :: ${values} `);
+      });
+      //map preserves the insertion order unlike the regular object.
+      //we can create a map from object using Object.entries(obj)
+      let userobj = {
+        name: "Anuj Singh",
+        age: 30
+      };
+      let map4 = new Map(Object.entries(userobj));
+      console.log(map4);
+      //now using Object.fromEntries() we can reverse the process i.e creating the Object using Map.
+      let obj4 = Object.fromEntries([
+        ["banana", 20],
+        ["Mango", 50],
+        ["Apple", 80]
+      ]);
+      console.log(obj4);
+
+      console.log("***********SET**********");
+      //set is a special type of collection - "set of values" (without keys), where each values may occur only once.
+      let john = { name: "john" };
+      let anuj = { name: "Anuj" };
+      let alex = { name: "Alex" };
+
+      let s = new Set();
+      s.add(john);
+      s.add(anuj);
+      s.add(alex);
+
+      for (let user of s) {
+        console.log(user);
+      }
+      console.log("****Using forEach()****");
+      s.forEach((values, valueAgain, s) => {
+        console.log(values);
+      });
+    </script>
+  </head>
+  <body></body>
+</html>
