@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script type="text/javascript">
+      /*
+              Destructing Assignment is a special syntax that allows us to "unpack" arrays or objects into bunch of variables.
+              Destructing also works great with complex functions that have a lot of parameters, default values, and so on.
+              */
+      let arr = ["Anuj", "Singh", "anuj60360@gmail.com"];
+      let [firstName, lastname] = arr;
+      console.log(firstName + " " + lastname);
+
+      // we can ignore element by introducing a , into it
+      let [fname, , email] = arr;
+      console.log(email);
+      // actually we can use any iterable on the right hand side and at the same time we
+      // can use any "assignables" at the left hand side.
+      let user = {};
+      [user.fname, user.lname, user.mail] = arr;
+      console.log(user);
+
+      /*
+                the rest `...`
+                If we want not just to get first values, but also to gather all that follows –
+                we can add one more parameter that gets “the rest” using three dots "...": (note that the type of the rest is an arrya)
+                */
+      let [name1, name2, ...rest] = [
+        "Anuj",
+        "Ambikesh",
+        "Shivam",
+        "hello",
+        "Amigos"
+      ];
+      console.log(name1 + " " + name2 + " " + rest);
+
+      //if we want to add some default value to replace the missing one, we can use it ::
+      let [name3 = "Tuhsit", name4 = "Sakshi"] = ["abishek"];
+      console.log(name3);
+      console.log(name4);
+
+      // *************DATE and TIME :: *************
+      console.log("************DATE and TIME :: ************");
+
+      let now = new Date();
+      console.log("current timeStamp is :: " + now.getTime()); //getting the timeStamp
+      console.log("another method to get the time stamp is:: " + +now);
+      //An integer number representing the number of milliseconds that has passed since the beginning of 1970 is called a timestamp.
+      /*We can always create a date from a timestamp using new Date(timestamp)
+            and convert the existing Date object to a timestamp using the date.getTime() method (see below)*/
+
+      console.log(Date.now());
+
+      let start = Date.now(); // milliseconds count from 1 Jan 1970
+
+      // do the job
+      for (let i = 0; i < 100000; i++) {
+        let doSomething = i * i * i;
+      }
+
+      let end = Date.now(); // done
+
+      console.log(`The loop took ${end - start} ms`); // subtract numbers, not dates
+
+      // **********Date.parse() from  a string***********
+      /*
+            The call to Date.parse(str) parses the string in the given format and
+             returns the timestamp (number of milliseconds from 1 Jan 1970 UTC+0). If the format is invalid, returns NaN.
+            */
+      let date = new Date();
+      let ms = Date.parse(date);
+      console.log(ms);
+      /*
+      The string format should be: YYYY-MM-DDTHH:mm:ss.sssZ, where:
+        YYYY-MM-DD – is the date: year-month-day.
+        The character "T" is used as the delimiter.
+        HH:mm:ss.sss – is the time: hours, minutes, seconds and milliseconds.
+        The optional 'Z' part denotes the time zone in the format +-hh:mm. A single letter Z that would mean UTC+0.
+        Shorter variants are also possible, like YYYY-MM-DD or YYYY-MM or even YYYY.
+      */
+    </script>
+  </head>
+  <body></body>
+</html>
