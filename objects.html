@@ -1,82 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <script> 
-     //objects are used to store keyed collections of various daa and more complex entities. 
-     /*object can be created with an optional listof properties. 
+    <script>
+      //objects are used to store keyed collections of various daa and more complex entities.
+      /*object can be created with an optional listof properties. 
      A property is a "Key:value" pair, where key is a String
      (also called "property name" and value can be anything.*/
-    //  let user = {
-    //      name: "Anuj Singh",
-    //      age : "23",
-    //      "like birds": true  //we can use multiword property names, but then they must be quoted!
-    //  }
-    //  user.isAdmin = true;
-    //  document.write(user.isAdmin);
-    //  alert(user.name);
-    //  delete user.isAdmin;   //To remove a property, we can use delete operator  
-    //  document.write(user["like birds"]);
-    //  document.write(user[name]); //will show undefined!
-    //  document.write(user["name"]);// will give the  output ANUJ SINGH
-    //  document.write(user.name);
-    //  user["key"] = true;
-    //  document.write(user.key);
-    //  delete user["key"];
-    //  document.write(user["key"]);
-     
-    //  let user = {};
-    //  let key = "likes birds";
-    //  user[key] = true ;
-    //  alert(user[key]);
-//********************Squared braces<START>**************
-        let user = {
-            name: "John",
-            age: 30
-        };
+      let user = {
+        name: "Anuj Singh",
+        age: "23",
+        "like birds": true //we can use multiword property names, but then they must be quoted!
+      };
+      user.isAdmin = true;
+      document.write(user.isAdmin);
+      alert(user.name);
+      delete user.isAdmin; //To remove a property, we can use delete operator
+      document.write(user["like birds"]);
+      document.write(user[name]); //will show undefined!
+      document.write(user["name"]); // will give the  output ANUJ SINGH
+      document.write(user.name);
+      user["key"] = true;
+      document.write(user.key);
+      delete user["key"];
+      document.write(user["key"]);
 
-    let key = prompt("What do you want to know about the user?", "name");
-
-    // access by variable
-    alert( user[key] ); // John (if enter "name")
-
-    //The dot notation cannot be used in a similar way:
-        let user1 = {
+      let user = {};
+      let key = "likes birds";
+      user[key] = true;
+      alert(user[key]);
+      //********************Squared braces<START>**************
+      let user = {
         name: "John",
         age: 30
-        };
+      };
 
-        let key2 = "name";
-        alert( user1.key2 ) // undefined  
-    //********************Squared braces<END>**************
+      let key = prompt("What do you want to know about the user?", "name");
 
-    //*****************Computed properties<START>***********
-        //Square brackets are much more powerful than the dot notation
+      // access by variable
+      alert(user[key]); // John (if enter "name")
 
-        let fruit = prompt("Which fruit to buy?", "apple");
-        let bag = {
-          [fruit]: 5, // the name of the property is taken from the variable fruit
-        };
-        alert( bag.apple ); // 5 if fruit="apple"
+      //The dot notation cannot be used in a similar way:
+      let user1 = {
+        name: "John",
+        age: 30
+      };
 
-//The meaning of a computed property is simple: [fruit] means that the property name should be taken from fruit.
-// So, if a visitor enters "apple", bag will become {apple: 5}.
-// Essentially, that works the same as:
-    let fruit1 = 'apple';
-    let bag1 = {
-    [fruit1 + 'Computers']: 5 // bag.appleComputers = 5
-    };
-    //*****************Computed properties<END>************
+      let key2 = "name";
+      alert(user1.key2); // undefined
+      //********************Squared braces<END>**************
 
+      //*****************Computed properties<START>***********
+      //Square brackets are much more powerful than the dot notation
 
-   
+      let fruit = prompt("Which fruit to buy?", "apple");
+      let bag = {
+        [fruit]: 5 // the name of the property is taken from the variable fruit
+      };
+      alert(bag.apple); // 5 if fruit="apple"
 
+      //The meaning of a computed property is simple: [fruit] means that the property name should be taken from fruit.
+      // So, if a visitor enters "apple", bag will become {apple: 5}.
+      // Essentially, that works the same as:
+      let fruit1 = "apple";
+      let bag1 = {
+        [fruit1 + "Computers"]: 5 // bag.appleComputers = 5
+      };
+      //*****************Computed properties<END>************
     </script>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body></body>
 </html>
