@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script type="text/javascript">
+      /* WEAKMAP :: the first diff between map and WeakMap is the keys in weakMap must be Objects, not primitive types 
+        Compare it with the regular Map example above.      
+        Now if john only exists as the key of WeakMap – it will be automatically deleted from the map (and memory).
+        the main area of application of weakmap is and additional data storage.
+        
+        Weakmap deos not support iteration and methods keys(), values(), entries()
+        WeakMap has only the following methods ::
+        weakMap.get(key), weakMap.set(key, value), weakMap.delete(key),weakMap.has(key)
+
+        USE CASES no.1::
+        If we’re working with an object that “belongs” to another code, maybe even a third-party library,
+        and would like to store some data associated with it,
+        that should only exist while the object is alive – then WeakMap is exactly what’s needed.*/
+
+      let visitCount = new Map();
+      function countUser(user) {
+        let count = visitCount.get(user) || 0;
+        visitCount.set(user, ++count);
+      }
+      let john = {
+        name: "John",
+        sex: "M"
+      };
+      countUser(john);
+      countUser(john);
+      countUser(john);
+      john = null;
+      console.log(visitCount.size);
+      console.log(visitCount.get(john)); //undefined
+
+      /*USE CASES no.1::
+      when the function result need to be remembered("chached"), so that future calls on the same 
+      function can reuse it.
+      */
+      let cache = new WeakMap();
+      function proces(obj) {
+        if (!cache.has(obj)) {
+          let result = obj.from + 5;
+          cache.set(obj, result);
+        }
+        return cache.get(obj);
+      }
+
+      let userObj = {
+        from: 8,
+        name: "Anuj Singh",
+        sex: "M"
+      };
+
+      console.log(proces(userObj));
+      console.log(proces(userObj));
+      console.log(proces(userObj));
+      console.log(proces(userObj));
+
+      /*  WEAKSET :::
+      WeakSet is also serves as a n additional storage. A membership in WeakSet may mean something about the object.
+      */
+      let visitedUsers = new WeakSet();
+
+      //list of  users that have just logged in to our system and we want to keep a track of visited users
+      let anuj = { name: "Anuj" };
+      let ambikesh = { name: "Ambikesh" };
+      let shivam = { name: "Shivam" };
+      let tushit = { name: "tushit" };
+
+      visitedUsers.add(anuj);
+      visitedUsers.add(ambikesh);
+      visitedUsers.add(shivam);
+      visitedUsers.add(tushit);
+
+      //now if need to check whether the user is logged in or not !!
+      console.log(visitedUsers.has(anuj)); //true
+      anuj = null;
+      console.log(visitedUsers.has(anuj)); //false
+    </script>
+  </head>
+  <body></body>
+</html>
