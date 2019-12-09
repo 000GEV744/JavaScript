@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script type="text/javascript">
+      /*protoypal inheritance is a language feature that helps in that.
+      In JavaScript, objects have a special hidden property [[Prototype]] (as named in the specification),
+      that is either null or references another object. That object is called “a prototype”:
+      The property [[Prototype]] is internal and hidden, but there are many ways to set it.
+      One of them is to use __proto__, like this  :: */
+
+      let animal = {
+        eats: true,
+        sound(sound) {
+          return sound;
+        }
+      };
+      let rabbit = {
+        jumps: true
+      };
+      rabbit.__proto__ = animal; //__proto__ is a getter amd setter for [[prototype]]
+      rabbit.eats = false; //here we can call that animal is a protoype of rabbit.
+      console.log(rabbit.eats);
+      let lion = {
+        jumps: true,
+        __proto__: animal
+      };
+
+      console.log(lion.sound("roar"));
+      lion.eats = false;
+      console.log(lion.eats);
+      console.log(animal.eats);
+      /*
+      there are two limitations :
+      1. the references cant go in circles, javascript will throw an error if we try to assign __proto__ in a circle.
+      2. the value of __proto__ can be either an object or null. other types are ignored.
+
+      important note::
+      No matter where the method is found: in an object or its prototype.
+      In a method call, this is always the object before the dot.
+
+      below down we have the example:: 
+      */
+
+      let janwar = {
+        walk() {
+          if (this.sleeping) {
+            console.log("i can walk");
+          }
+        },
+        sleep() {
+          this.sleeping = true;
+        }
+      };
+
+      let billi = {
+        __proto__: janwar,
+        name: "white rabbit "
+      };
+
+      billi.sleep();
+      console.log(billi.sleeping); //true
+      console.log(janwar.sleeping); // undefined
+
+      //for..in loop iterates over both inherited and owned properties.
+      for (let prop in billi) {
+        console.log(prop);
+      }
+
+      //If that’s not what we want, and we’d like to exclude inherited properties, there’s a built-in method obj.hasOwnProperty(key):
+      // it returns true if obj has its own (not inherited) property named key.
+      console.log("**************");
+      for (let prop in billi) {
+        if (billi.hasOwnProperty(prop)) {
+          console.log(`own property :: ${prop}`);
+        } else {
+          console.log(`inherited porperty :: ${prop}`);
+        }
+      }
+
+      console.log("***********F.prototype***********");
+      /*Remember, new objects can be created with a constructor function, like new F().
+        If F.prototype is an object, then the new operator uses it to set [[Prototype]] for the new object.*/
+      let cat = {
+        eats: "non-veg"
+      };
+      BigCat.prototype = cat;
+
+      function BigCat(name) {
+        this.name = name;
+      }
+      let cheetah = new BigCat("cheetah");
+      console.log(cheetah.eats + " :: " + cheetah.name);
+      BigCat.prototype = janwar;
+
+      let cheetah1 = new BigCat("cheetah1");
+      console.log(cheetah1.eats + " :: " + cheetah1.name);
+      /*F.prototype property is only used when new F is called, 
+      it assigns [[Prototype]] of the new object. After that, there’s no connection between F.prototype and the new object. 
+      Think of it as a “one-time gift”.
+      If, after the creation, F.prototype property changes (F.prototype = <another object>), then new objects created by new F will have another object as [[Prototype]], 
+      but already existing objects keep the old one.*/
+
+      
+
+    </script>
+  </head>
+  <body></body>
+</html>
