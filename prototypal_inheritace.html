@@ -42,7 +42,7 @@
       No matter where the method is found: in an object or its prototype.
       In a method call, this is always the object before the dot.
 
-      below down we have the example:: 
+      below down we have the example::
       */
 
       let janwar = {
@@ -88,7 +88,8 @@
         eats: "non-veg"
       };
       BigCat.prototype = cat;
-
+      // Setting BigCat.prototype = cat literally states the following:
+      //"When a new BigCat is created, assign its [[Prototype]] to cat".
       function BigCat(name) {
         this.name = name;
       }
@@ -98,14 +99,30 @@
 
       let cheetah1 = new BigCat("cheetah1");
       console.log(cheetah1.eats + " :: " + cheetah1.name);
-      /*F.prototype property is only used when new F is called, 
-      it assigns [[Prototype]] of the new object. After that, there’s no connection between F.prototype and the new object. 
+      /*F.prototype property is only used when new F is called,
+      it assigns [[Prototype]] of the new object. After that, there’s no connection between F.prototype and the new object.
       Think of it as a “one-time gift”.
-      If, after the creation, F.prototype property changes (F.prototype = <another object>), then new objects created by new F will have another object as [[Prototype]], 
+      If, after the creation, F.prototype property changes (F.prototype = <another object>), then new objects created by new F will have another object as [[Prototype]],
       but already existing objects keep the old one.*/
 
-      
+      console.log("************default prototype************");
+      //every function has the protoype property even if we dont supply it.
+      //the default prototype is an object with the only property contructor that points back to itself.
+      //for example ::
+      function Dog() {}
 
+      let lucifer = new Dog();
+      console.log(Dog.prototype.constructor == Dog);
+
+      //We can use constructor property to create a new object using the same constructor as the existing one.
+      function Human(name) {
+        this.name = name;
+        alert(this.name);
+      }
+      let anuj = new Human("Anuj");
+      let ambikesh = new anuj.constructor("Ambikesh"); //making another object using  oreviously created object
+      console.log(ambikesh.name);
+      let Shivam = new Human("Shivam");
     </script>
   </head>
   <body></body>
