@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script type="text/javascript">
+      class User {
+        constructor(name) {
+          this.name = name;
+        }
+        sayHi() {
+          console.log(this.name);
+        }
+      }
+
+      console.log(typeof User); //in javascript, class is a kind of function
+      var anuj = new User("anuj");
+      anuj.sayHi();
+
+      //rewriting class User is pure functions
+      function User1(name) {
+        this.name = name;
+      }
+      User1.prototype.sayHi = function() {
+        console.log(this.name);
+      };
+
+      let ambi = new User1("Ambikesh");
+      ambi.sayHi();
+
+      // ******************Classes expression************
+      //just like function we can even declare a class variable here !
+
+      let animal = class {
+        constructor(name) {
+          this.name = name;
+        }
+        sayHi() {
+          console.log("Animal " + this.name + " is saying hi !");
+        }
+      };
+
+      let shivam = new animal("shivam");
+      shivam.sayHi();
+
+      //**********we can even create classes on demand
+      function makeClass(phrase) {
+        return class {
+          contructor(name) {
+            this.name = name;
+          }
+          sayHi() {
+            alert(phrase);
+          }
+        };
+      }
+
+      let homosapiens = makeClass(" class is created");
+      let tushit = new homosapiens("tushit");
+      tushit.sayHi();
+
+      //*************getters ad setters in js class using get and set
+      class Vehicle {
+        constructor(name) {
+          this.name = name; //invokes the setter here !
+        }
+        get name() {
+          return this._name;
+        }
+        set name(value) {
+          if (value.length < 4) {
+            alert("name is too short");
+            return;
+          }
+          this._name = value;
+        }
+      }
+
+      var maruti = new Vehicle("maruti");
+      console.log(maruti.name);
+      let bmw = new Vehicle("BMW");
+      console.log(bmw.name); //undefined
+
+
+      // ****** Extends keyword ********
+      
+    </script>
+  </head>
+  <body></body>
+</html>
