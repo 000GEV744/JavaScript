@@ -83,9 +83,54 @@
       let bmw = new Vehicle("BMW");
       console.log(bmw.name); //undefined
 
-
       // ****** Extends keyword ********
-      
+      //class syntax allows to specify not just a class , but any expression after extends
+      function f(phrase) {
+        return class {
+          sayHi() {
+            console.log(phrase);
+          }
+        };
+      }
+
+      class Animal extends f("hello") {}
+      new Animal().sayHi();
+
+      //********** Overiding a method **************
+      /*classes provide super keyword for that
+           1. super.method() to call a parent method.
+           2. super() to call a parent constructor */
+
+      class Animal1 {
+        constructor(name) {
+          this.name = name;
+          this.speed = 0;
+        }
+
+        run(speed) {
+          this.speed += speed;
+          console.log(`${this.name}  is running with speed ${this.speed}`);
+        }
+        stop() {
+          this.speed = 0;
+          console.log(`${this.name} stands still`);
+        }
+      }
+
+      //overiding the parent class Animal method stop()
+      class Rabbit extends Animal1 {
+        hide() {
+          consol.log(`${this.name} hides !`);
+        }
+
+        stop() {
+          super.stop();
+          this.hide();
+        }
+      }
+
+      let rabbit = new Rabbit("Rabbit");
+      rabbit.stop();
     </script>
   </head>
   <body></body>
