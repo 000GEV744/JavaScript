@@ -73,11 +73,18 @@
 }
 
 .formDiv {
-  margin: 5% 0 0 35%;
+  background-color: aliceblue;
+  margin: 2% 5% 0 31%;
+  width: 36%;
+  border-style: groove;
 }
 
 .buttonDiv {
-  margin: 4% 0 0 14%;
+  margin: 6% 0 0 30%;
+}
+
+.tutorform {
+  padding: 10% 0 10% 10%;
 }
 
 .button {
@@ -96,4 +103,24 @@
 .textField {
   height: 23px;
   font-size: 13pt;
+}
+
+table#t01 {
+  margin: 30px 0 0px 0;
+  width: 100%;
+}
+table#t01 tr {
+  background-color: #ccc;
+}
+
+table#t01 th {
+  background-color: black;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+table#t01 td {
+  padding: 15px;
+  text-align: left;
 }
