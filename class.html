@@ -120,7 +120,7 @@
       //overiding the parent class Animal method stop()
       class Rabbit extends Animal1 {
         hide() {
-          consol.log(`${this.name} hides !`);
+          console.log(`${this.name} hides !`);
         }
 
         stop() {
@@ -131,6 +131,24 @@
 
       let rabbit = new Rabbit("Rabbit");
       rabbit.stop();
+
+      //******Static properties and methods ***********
+      /*
+      We can also assign a method to the class function itself, not to its "prototype". Such methods are called static.
+      That actually does the same as assigning it as a property directly:
+      */
+
+      class human {
+        static name = "Anuj";
+        constructor(name) {
+          this.name = name;
+        }
+        static eats() {
+          console.log(`${human.name} eats a lot !`);
+        }
+      }
+      var anuj = new human("anuj");
+      human.eats();
     </script>
   </head>
   <body></body>
