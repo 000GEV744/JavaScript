@@ -13,11 +13,47 @@
         document.head.append(script);
       }
 
-      loadScript("https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js", script => {
-          alert(`Cool, the script ${script.src} is loaded`);
-          alert(_); // function declared in the loaded script
+      loadScript(
+        "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js",
+        script => {
+          console.log(`Cool, the script ${script.src} is loaded`);
+          console.log(_); // function declared in the loaded script
         }
       );
+
+      let promise = new Promise(function(resolve, reject) {
+        setTimeout(() => resolve("done!"), 1000);
+      });
+
+      // resolve runs the first function in .then
+      promise.then(
+        result => console.log(result), // shows "done!" after 1 second
+        error => console.log(error) // doesn't run
+      );
+
+      let promise1 = new Promise(function(resolve, reject) {
+        setTimeout(() => reject(new Error("Whoops!")), 1000);
+      });
+
+      // reject runs the second function in .then
+      promise1.then(
+        result => console.log(result), // doesn't run
+        error => console.log(error) // shows "Error: Whoops!" after 1 second
+      );
+
+      console.log("**********Finally Example************");
+
+      new Promise((resolve, reject) => {
+        setTimeout(() => resolve("result"), 2000);
+      })
+        .finally(() => console.log("Promise ready"))
+        .then(result => console.log(result)); // <-- .then handles the result
+
+      new Promise((resolve, reject) => {
+        throw new Error("error");
+      })
+        .finally(() => console.log("Promise is ready again"))
+        .catch(err => console.log(err)); // <-- .catch handles the error object
     </script>
   </head>
   <body></body>
