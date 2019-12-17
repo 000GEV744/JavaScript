@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script type="text/javascript">
+      alert("from Head: " + document.body); //cannot access the body element as of now!
+    </script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      alert("from BODY: " + document.body);
+    </script>
+    <!-- ********** querySelectorAll :: elem.querySelectorAll(css) returns all elements inside elem matching the given CSS selector.**************** -->
+    <ul>
+      <li>the</li>
+      <li>test</li>
+    </ul>
+
+    <ul>
+      <li>has</li>
+      <li>passed</li>
+    </ul>
+    <script type="text/javascript">
+      let elements = document.querySelectorAll("ul > li:last-child");
+      for (let elem of elements) {
+        console.log(elem.innerHTML);
+      }
+    </script>
+
+    <table id="table">
+      <tr>
+        <td>Your age:</td>
+
+        <td>
+          <label>
+            <input type="radio" name="age" value="young" checked /> less than 18
+          </label>
+          <label>
+            <input type="radio" name="age" value="mature" /> from 18 to 50
+          </label>
+          <label>
+            <input type="radio" name="age" value="senior" /> more than 60
+          </label>
+        </td>
+      </tr>
+    </table>
+
+    <script>
+      let inputs = table.getElementsByTagName("input");
+
+      for (let input of inputs) {
+        console.log(input.value + ": " + input.checked);
+      }
+    </script>
+  </body>
+</html>
