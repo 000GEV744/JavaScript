@@ -14,6 +14,7 @@
     </div>
 
     <div class="formDiv">
+      <!--*********************************Form to be filled for Tutor creation <START>*****************************************-->
       <form class="tutorform" id="tutorform">
         <table>
           <tr>
@@ -78,8 +79,54 @@
         </div>
       </form>
     </div>
-
-    <!-- this div is to show the time table that has been set by the management console -->
+    <!--*********************************Form to be filled for Tutor creation <END>*********************************-->
+    <!-- ****************************** Slot Assigning for tutors <START> ****************************** -->
+    <div class="slotdiv">
+      <form class="slotform">
+        <table>
+          <tr>
+            <th>Select class :</th>
+            <td colspan="2">
+              <input type="radio" name="classA" value="Class A" />Class A &nbsp;
+              <input type="radio" name="classA" value="Class A" />Class B
+            </td>
+          </tr>
+          <tr>
+            <th>Select Subject :</th>
+            <td>
+              <select>
+                <option value="">select..</option>
+                <option value="JS">Javascript</option>
+                <option value="JAVA">JAVA</option>
+                <option value="HTML">HTML</option>
+                <option value="Angular">Angular</option>
+                <option value="Spring">Spring</option>
+                <option value="NodeJS">NodeJS</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th>Select Slots :</th>
+            <td>
+              <select >
+                <option value="">select..</option>
+                <option value="8-9">8-9 AM</option>
+                <option value="9-10">9-10 AM</option>
+                <option value="10-11">10-11 AM</option>
+                <option value="11-12">11-12 AM</option>
+                <option value="12-1">12-1 PM</option>
+                <option value="1-2">1-2 PM</option>
+                <option value="2-3">2-3 PM</option>
+              </select>
+              &nbsp;
+            </td>
+            <th>Available Teachers :</th>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <!-- ****************************** Slot Assigning for tutors <END> ****************************** -->
+    <!--***************************************Time Table <START>***************************************************-->
     <div>
       <table id="t01">
         <tr>
@@ -114,5 +161,6 @@
         </tr>
       </table>
     </div>
+    <!--*********************************Time Table <END>*****************************************-->
   </body>
 </html>
