@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="timetable.css" />
+    <script src="teacherCreator.js" type="text/javascript"></script>
   </head>
   <body>
     <div class="divCentre">
@@ -13,7 +14,7 @@
     </div>
 
     <div class="formDiv">
-      <form class="tutorform">
+      <form class="tutorform" id="tutorform">
         <table>
           <tr>
             <td>
@@ -24,6 +25,7 @@
                 class="textField"
                 type="text"
                 id="name"
+                name="name"
                 placeholder="name"
               />
             </td>
@@ -36,35 +38,35 @@
             <td>
               <label class="container"
                 >JS
-                <input type="checkbox" checked="checked" value="JS" />
+                <input name="Expert_in" type="checkbox" value="JS" />
                 <span class="checkmark"></span>
               </label>
 
               <label class="container"
                 >JAVA
-                <input type="checkbox" value="JAVA" />
+                <input type="checkbox" name="Expert_in" value="JAVA" />
                 <span class="checkmark"></span>
               </label>
               <label class="container"
                 >HTML
-                <input type="checkbox" value="HTML" />
+                <input name="Expert_in" type="checkbox" value="HTML" />
                 <span class="checkmark"></span>
               </label>
             </td>
             <td>
               <label class="container"
                 >Angular
-                <input type="checkbox" value="Angular" />
+                <input name="Expert_in" type="checkbox" value="Angular" />
                 <span class="checkmark"></span>
               </label>
               <label class="container"
                 >Spring
-                <input type="checkbox" value="Spring" />
+                <input name="Expert_in" type="checkbox" value="Spring" />
                 <span class="checkmark"></span>
               </label>
               <label class="container"
                 >NodeJS
-                <input type="checkbox" value="NodeJS" />
+                <input name="Expert_in" type="checkbox" value="NodeJS" />
                 <span class="checkmark"></span>
               </label>
             </td>
@@ -72,11 +74,12 @@
         </table>
 
         <div class="buttonDiv">
-          <input class="button" type="submit" value="Enter details" />
+          <input class="button" onclick="saveTeacher()" value="Enter details" />
         </div>
       </form>
     </div>
 
+    <!-- this div is to show the time table that has been set by the management console -->
     <div>
       <table id="t01">
         <tr>
