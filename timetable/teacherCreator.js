@@ -7,7 +7,7 @@ class tutors {
   constructor(name, expertise) {
     this.name = name;
     this.expertise = expertise;
-    this.slots = null;
+    this.slot = null;
     this.classAssigned = null;
   }
 }
@@ -52,5 +52,44 @@ function saveTeacher() {
 }
 //*********************************Creating tutors<END>*****************************************/
 
-
-function()
+//******************Showing tutors in dropDown List using Subject <Start>***********************/
+function showTutors(subject, slot) {
+  let str = '<select><option value="">select..</option>';
+  let tutorName = [];
+  if (subject != "" && slot == "") {
+    //tutor list will show incase user selects only subject
+    for (let tutors of registeredTutors) {
+      let tutorForSubject = tutors.expertise.find(item => {
+        if (item == subject) {
+          return item;
+        }
+      });
+      if (tutorForSubject != undefined) {
+        tutorName.push(tutors.name);
+      }
+    }
+    if (tutorName.length > 0) {
+      for (let names of tutorName) {
+        str += `<option value="${names}">${names}</option>`;
+      }
+      str += "</select>";
+      document.getElementById("teachersperConditions").innerHTML = str;
+    } else {
+      alert("oops! No teachers are available. ");
+    }
+  } else if (subject == "" && slot != "") {
+    alert(`slot ${slot}  is selected !`);
+    for (let tutors of registeredTutors) {
+      tutors.slot.find(item => {
+        if (item == slot) {
+          return item;
+        }
+      });
+    }
+  } else if (subject != "" && slot != "") {
+    alert(`both slot ${slot} and subject ${subject} is selected`);
+  } else {
+    document.getElementById("teachersperConditions").innerHTML = "";
+  }
+}
+//******************Showing tutors in dropDown List using Subject <End>*************************/

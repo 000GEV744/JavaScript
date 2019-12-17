@@ -94,7 +94,10 @@
           <tr>
             <th>Select Subject :</th>
             <td>
-              <select>
+              <select
+                id="subject"
+                onchange="showTutors(this.value,document.getElementById('slots').value)"
+              >
                 <option value="">select..</option>
                 <option value="JS">Javascript</option>
                 <option value="JAVA">JAVA</option>
@@ -108,7 +111,10 @@
           <tr>
             <th>Select Slots :</th>
             <td>
-              <select >
+              <select
+                id="slots"
+                onchange="showTutors(document.getElementById('subject').value,this.value)"
+              >
                 <option value="">select..</option>
                 <option value="8-9">8-9 AM</option>
                 <option value="9-10">9-10 AM</option>
@@ -121,11 +127,13 @@
               &nbsp;
             </td>
             <th>Available Teachers :</th>
+            <td id="teachersperConditions"></td>
           </tr>
         </table>
       </form>
     </div>
     <!-- ****************************** Slot Assigning for tutors <END> ****************************** -->
+
     <!--***************************************Time Table <START>***************************************************-->
     <div>
       <table id="t01">
