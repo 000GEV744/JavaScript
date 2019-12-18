@@ -78,6 +78,12 @@
   width: 36%;
   border-style: groove;
 }
+.formDiv1 {
+  background-color: aliceblue;
+  margin: 2% 5% 3% 29%;
+  width: 40%;
+  border-style: groove;
+}
 
 .buttonDiv {
   margin: 6% 0 0 30%;

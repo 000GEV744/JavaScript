@@ -9,9 +9,6 @@ class tutors {
   constructor(name, expertise) {
     this.name = name;
     this.expertise = expertise;
-    if (this.name == "Anuj Singh") {
-      this.slot.push("8-9 AM");
-    }
   }
 }
 //*********************** Creating a class of tutors <END> ******************************
@@ -85,18 +82,16 @@ function showTutors(subject, slot) {
         }
       });
       if (alreadySlots == undefined) {
-        console.log(alreadySlots);
         tutorName.push(tutors.name);
-        alert(`${tutors.name} is pushed to array`);
       }
     }
     setDOM(tutorName);
     // *************************************<END> :: ONLY FOR SLOTS **********************************
   } else if (subject != "" && slot != "") {
-    alert(`both slot ${slot} and subject ${subject} is selected`);
+    // *************************************<START> :: both for slots and subjects **********************************
+
     let tutorName = [];
     for (let tutors of registeredTutors) {
-      console.log(tutors);
       let alreadySlots = tutors.slot.find(item => {
         if (item == slot) {
           console.log(item);
@@ -111,11 +106,11 @@ function showTutors(subject, slot) {
         });
         if (tutorForSubject != undefined) {
           tutorName.push(tutors.name);
-          alert(`${tutors.name} is pushed to array`);
         }
       }
     }
     setDOM(tutorName); //calling to set the drop down list.
+    // ************************<END> :: both for slots and subjects*************************
   } else {
     document.getElementById("teachersperConditions").innerHTML = "";
   }
@@ -123,7 +118,7 @@ function showTutors(subject, slot) {
 //******************Showing tutors in dropDown List using Subject <End>*************************/
 
 function setDOM(tutorName) {
-  let str = '<select><option value="">select..</option>';
+  let str = '<select  id="selectedTutor"><option value="">select..</option>';
   if (tutorName.length > 0) {
     for (let names of tutorName) {
       str += `<option value="${names}">${names}</option>`;
@@ -135,3 +130,53 @@ function setDOM(tutorName) {
     alert("oops! No teachers are available. ");
   }
 }
+
+//******************* <START> ************************/
+function assignTeacher(subject, slot, tutorname, classAlloted) {
+  let flag = 0;
+  if (classAlloted[0].checked) {
+    classAlot = classAlloted[0].value;
+  }
+  if (classAlloted[1].checked) {
+    classAlot = classAlloted[1].value;
+  }
+  //checking if tutor is already assigned that class or not
+  for (let tutor of registeredTutors) {
+    console.log(tutor);
+    if (tutor.name == tutorname) {
+      console.log("name matched");
+      if (tutor.slot.length == 0) {
+        flag = 1;
+      }
+      //iterating over registered tutors and now finding the tutor who is assigned!
+      for (var i = 0; i < tutor.slot.length; i++) {
+        /*checking if that slot is available or not and if slot is not available then check whether
+       tutor is assigned for that same class or not and
+       if he is not assigned for same class then make flag = 1; means teacher is available to get assigned!*/
+        console.log(tutor.slot[i] + " :: " + slot);
+        if (tutor.slot[i] == slot) {
+          console.log(tutor.classAssigned[i] + " :: " + classAlot);
+          if (tutor.classAssigned[i] != classAlot) {
+            flag = 1;
+            break;
+          }
+        } else {
+          flag = 1;
+          break;
+        }
+      }
+    }
+
+    if (flag == 1) {
+      tutor.slot.push(slot);
+      tutor.classAssigned.push(classAlot);
+      document.getElementById(
+        `${classAlot} ${slot}`
+      ).innerHTML = `<b>${subject}</b> <sub>(By ${tutorname})</sub>`;
+    }
+  }
+  if (flag == 0) {
+    alert("oops! Teachers is Busy.");
+  }
+}
+//******************* <END> ************************/
