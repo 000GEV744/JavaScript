@@ -81,8 +81,8 @@
     </div>
     <!--*********************************Form to be filled for Tutor creation <END>*********************************-->
     <!-- ****************************** Slot Assigning for tutors <START> ****************************** -->
-    <div class="slotdiv">
-      <form class="slotform">
+    <div class="formDiv">
+      <form class="tutorform">
         <table>
           <tr>
             <th>Select class :</th>
@@ -116,13 +116,13 @@
                 onchange="showTutors(document.getElementById('subject').value,this.value)"
               >
                 <option value="">select..</option>
-                <option value="8-9">8-9 AM</option>
-                <option value="9-10">9-10 AM</option>
-                <option value="10-11">10-11 AM</option>
-                <option value="11-12">11-12 AM</option>
-                <option value="12-1">12-1 PM</option>
-                <option value="1-2">1-2 PM</option>
-                <option value="2-3">2-3 PM</option>
+                <option value="8-9 AM">8-9 AM</option>
+                <option value="9-10 AM">9-10 AM</option>
+                <option value="10-11 AM">10-11 AM</option>
+                <option value="11-12 AM">11-12 AM</option>
+                <option value="12-1 PM">12-1 PM</option>
+                <option value="1-2 PM">1-2 PM</option>
+                <option value="2-3 PM">2-3 PM</option>
               </select>
               &nbsp;
             </td>
@@ -130,6 +130,10 @@
             <td id="teachersperConditions"></td>
           </tr>
         </table>
+
+        <div class="buttonDiv">
+          <input class="button" onclick="assignTeacher()" value="Assign" />
+        </div>
       </form>
     </div>
     <!-- ****************************** Slot Assigning for tutors <END> ****************************** -->

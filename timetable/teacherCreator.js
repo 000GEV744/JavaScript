@@ -4,11 +4,14 @@ var slotAssignedMap = new Map(); //once user will assign the slot to the tutor t
 
 //*********************** Creating a class of tutors <START> ******************************
 class tutors {
+  slot = [];
+  classAssigned = [];
   constructor(name, expertise) {
     this.name = name;
     this.expertise = expertise;
-    this.slot = null;
-    this.classAssigned = null;
+    if (this.name == "Anuj Singh") {
+      this.slot.push("8-9 AM");
+    }
   }
 }
 //*********************** Creating a class of tutors <END> ******************************
@@ -57,7 +60,7 @@ function showTutors(subject, slot) {
   let str = '<select><option value="">select..</option>';
   let tutorName = [];
   if (subject != "" && slot == "") {
-    //tutor list will show incase user selects only subject
+    // *************************************<START> :: ONLY FOR SUBJECT**********************************
     for (let tutors of registeredTutors) {
       let tutorForSubject = tutors.expertise.find(item => {
         if (item == subject) {
@@ -68,28 +71,67 @@ function showTutors(subject, slot) {
         tutorName.push(tutors.name);
       }
     }
-    if (tutorName.length > 0) {
-      for (let names of tutorName) {
-        str += `<option value="${names}">${names}</option>`;
-      }
-      str += "</select>";
-      document.getElementById("teachersperConditions").innerHTML = str;
-    } else {
-      alert("oops! No teachers are available. ");
-    }
+    setDOM(tutorName);
+    // *************************************<END> :: ONLY FOR SUBJECT**********************************
   } else if (subject == "" && slot != "") {
-    alert(`slot ${slot}  is selected !`);
+    // *************************************<START> :: ONLY FOR SLOTS**********************************
+    let tutorName = [];
     for (let tutors of registeredTutors) {
-      tutors.slot.find(item => {
-        if (item == slot) {
+      console.log(tutors.slot);
+      let alreadySlots = tutors.slot.find(item => {
+        console.log(item + " :: " + slot);
+        if (item === slot) {
           return item;
         }
       });
+      if (alreadySlots == undefined) {
+        console.log(alreadySlots);
+        tutorName.push(tutors.name);
+        alert(`${tutors.name} is pushed to array`);
+      }
     }
+    setDOM(tutorName);
+    // *************************************<END> :: ONLY FOR SLOTS **********************************
   } else if (subject != "" && slot != "") {
     alert(`both slot ${slot} and subject ${subject} is selected`);
+    let tutorName = [];
+    for (let tutors of registeredTutors) {
+      console.log(tutors);
+      let alreadySlots = tutors.slot.find(item => {
+        if (item == slot) {
+          console.log(item);
+          return item; //checking if that slot is available or not
+        }
+      });
+      if (alreadySlots == undefined) {
+        let tutorForSubject = tutors.expertise.find(item => {
+          if (item == subject) {
+            return item; //checking he is a tutor of that subject or not
+          }
+        });
+        if (tutorForSubject != undefined) {
+          tutorName.push(tutors.name);
+          alert(`${tutors.name} is pushed to array`);
+        }
+      }
+    }
+    setDOM(tutorName); //calling to set the drop down list.
   } else {
     document.getElementById("teachersperConditions").innerHTML = "";
   }
 }
 //******************Showing tutors in dropDown List using Subject <End>*************************/
+
+function setDOM(tutorName) {
+  let str = '<select><option value="">select..</option>';
+  if (tutorName.length > 0) {
+    for (let names of tutorName) {
+      str += `<option value="${names}">${names}</option>`;
+    }
+    str += "</select>";
+    document.getElementById("teachersperConditions").innerHTML = str;
+  } else {
+    document.getElementById("teachersperConditions").innerHTML = "";
+    alert("oops! No teachers are available. ");
+  }
+}
