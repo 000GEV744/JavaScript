@@ -1,8 +1,7 @@
 var registeredTutors = []; // will store the tutors who have registered themselves onto the portal
 var slotAssignedMap = new Map(); //once user will assign the slot to the tutor that will get store here
-//where the key will be the slot and value will be the tutors object .
+//where the key will be the slot and value will be the tutors object.
 
-//*********************** Creating a class of tutors <START> ******************************
 class tutors {
   slot = [];
   classAssigned = [];
@@ -11,9 +10,8 @@ class tutors {
     this.expertise = expertise;
   }
 }
-//*********************** Creating a class of tutors <END> ******************************
 
-//*********************************Creating tutors<START>*****************************************/
+//saving the teachers with proper validations on the form no. 1
 function saveTeacher() {
   let count = 0;
   let expertsArray = [];
@@ -39,25 +37,24 @@ function saveTeacher() {
     }
     if (t != undefined) {
       alert(
-        "tutor registered and details are :: " +
+        "tutor " +
           t.name +
-          " :: " +
+          " with Expertise - " +
           t.expertise +
+          " is added!" +
           "\n" +
-          " & No. of tutors :: " +
+          "No. of tutors :: " +
           registeredTutors.length
       );
     }
   }
 }
-//*********************************Creating tutors<END>*****************************************/
 
-//******************Showing tutors in dropDown List using Subject <Start>***********************/
+//In form 2 after selecting select boxes, it'll show the result in the available teacher sections.
 function showTutors(subject, slot) {
   let str = '<select><option value="">select..</option>';
   let tutorName = [];
   if (subject != "" && slot == "") {
-    // *************************************<START> :: ONLY FOR SUBJECT**********************************
     for (let tutors of registeredTutors) {
       let tutorForSubject = tutors.expertise.find(item => {
         if (item == subject) {
@@ -69,9 +66,7 @@ function showTutors(subject, slot) {
       }
     }
     setDOM(tutorName);
-    // *************************************<END> :: ONLY FOR SUBJECT**********************************
   } else if (subject == "" && slot != "") {
-    // *************************************<START> :: ONLY FOR SLOTS**********************************
     let tutorName = [];
     for (let tutors of registeredTutors) {
       console.log(tutors.slot);
@@ -86,10 +81,7 @@ function showTutors(subject, slot) {
       }
     }
     setDOM(tutorName);
-    // *************************************<END> :: ONLY FOR SLOTS **********************************
   } else if (subject != "" && slot != "") {
-    // *************************************<START> :: both for slots and subjects **********************************
-
     let tutorName = [];
     for (let tutors of registeredTutors) {
       let alreadySlots = tutors.slot.find(item => {
@@ -110,13 +102,12 @@ function showTutors(subject, slot) {
       }
     }
     setDOM(tutorName); //calling to set the drop down list.
-    // ************************<END> :: both for slots and subjects*************************
   } else {
     document.getElementById("teachersperConditions").innerHTML = "";
   }
 }
-//******************Showing tutors in dropDown List using Subject <End>*************************/
 
+//setting the drop down list for available teachers after user will select the available text boxes in the form 2
 function setDOM(tutorName) {
   let str = '<select  id="selectedTutor"><option value="">select..</option>';
   if (tutorName.length > 0) {
@@ -131,9 +122,9 @@ function setDOM(tutorName) {
   }
 }
 
-//******************* <START> ************************/
+//assingning the teacher to a particular slot in the time table div.
 function assignTeacher(subject, slot, tutorname, classAlloted) {
-  let flag = 0;
+  let flag;
   if (classAlloted[0].checked) {
     classAlot = classAlloted[0].value;
   }
@@ -142,9 +133,8 @@ function assignTeacher(subject, slot, tutorname, classAlloted) {
   }
   //checking if tutor is already assigned that class or not
   for (let tutor of registeredTutors) {
-    console.log(tutor);
+    flag = 0;
     if (tutor.name == tutorname) {
-      console.log("name matched");
       if (tutor.slot.length == 0) {
         flag = 1;
       }
@@ -173,10 +163,21 @@ function assignTeacher(subject, slot, tutorname, classAlloted) {
       document.getElementById(
         `${classAlot} ${slot}`
       ).innerHTML = `<b>${subject}</b> <sub>(By ${tutorname})</sub>`;
+      alert("Congratulations!" + "\n" + "Teacher assigned !");
+      resetDom(classAlloted);
+      break;
     }
   }
   if (flag == 0) {
+    resetDom(classAlloted);
     alert("oops! Teachers is Busy.");
   }
 }
-//******************* <END> ************************/
+
+function resetDom(classAlloted) {
+  document.getElementById("teachersperConditions").innerHTML = "";
+  classAlloted[0].checked = false;
+  classAlloted[1].checked = false;
+  document.getElementById("subject").value = "";
+  document.getElementById("slots").value = "";
+}

@@ -82,14 +82,23 @@
     <!--*********************************Form to be filled for Tutor creation <END>*********************************-->
     <!-- ****************************** Slot Assigning for tutors <START> ****************************** -->
     <div class="formDiv1">
-      <form class="tutorform">
+      <form class="tutorform" name="assignform">
         <table>
           <tr>
             <th>Select class :</th>
             <td colspan="2">
-              <input type="radio" name="classAlloted" value="Class A" />Class A
-              &nbsp;
-              <input type="radio" name="classAlloted" value="Class B" />Class B
+              <input
+                type="radio"
+                name="classAlloted"
+                value="Class A"
+                onclick="showTutors(document.getElementById('subject').value,document.getElementById('slots').value)"
+              />Class A &nbsp;
+              <input
+                type="radio"
+                name="classAlloted"
+                value="Class B"
+                onclick="showTutors(document.getElementById('subject').value,document.getElementById('slots').value)"
+              />Class B
             </td>
           </tr>
           <tr>
