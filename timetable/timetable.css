@@ -71,7 +71,10 @@
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-
+.styespace td,
+th {
+  padding: 7px;
+}
 .formDiv {
   background-color: aliceblue;
   margin: 2% 5% 3% 31%;
