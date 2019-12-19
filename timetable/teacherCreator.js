@@ -1,7 +1,4 @@
 var registeredTutors = []; // will store the tutors who have registered themselves onto the portal
-var slotAssignedMap = new Map(); //once user will assign the slot to the tutor that will get store here
-//where the key will be the slot and value will be the tutors object.
-
 class tutors {
   slot = [];
   classAssigned = [];
