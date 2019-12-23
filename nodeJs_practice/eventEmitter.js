@@ -22,12 +22,16 @@ class Person extends EventEmitter {
 let anuj = new Person("anuj");
 let ambikesh = new Person("ambikesh");
 
-function onEmitFunc(persn) {
-  console.log("my name is " + persn);
-}
+// function onEmitFunc(persn) {
+//   console.log("my name is " + persn);
+// }
 
-anuj.on("name", onEmitFunc(name));
-ambikesh.on("name", onEmitFunc(name));
+anuj.on("name", name => {
+  console.log("my name is " + name);
+});
+ambikesh.on("name", name => {
+  console.log("my name is " + name);
+});
 
 anuj.emit("name", anuj.name);
 ambikesh.emit("name", ambikesh.name);
