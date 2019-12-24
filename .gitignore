@@ -1,5 +1,3 @@
 *.vscode
 *.prettierrc
-*JavaScript\nodeJs_practice\package_practice\node_modules
-*JavaScript\nodeJs_practice\practice_files\sample1.html
-*JavaScript\nodeJs_practice\practice_files\sampleImage.png
+\JavaScript\nodeJs_practice\package_practice\node_modules/*
