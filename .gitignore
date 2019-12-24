@@ -1,3 +1,2 @@
 *.vscode
 *.prettierrc
-\nodeJs_practice\package_practice\node_modules/*
