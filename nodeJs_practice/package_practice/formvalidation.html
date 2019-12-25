@@ -44,6 +44,7 @@
           type="email"
           class="form-control"
           name="email"
+          id="e"
           aria-describedby="emailHelp"
           placeholder="Enter email"
         />
@@ -57,6 +58,7 @@
           type="password"
           class="form-control"
           name="password"
+          id="pwd"
           placeholder="Password"
         />
       </div>
@@ -66,6 +68,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
       $(document).ready(() => {
+        console.log(document.getElementById("e"));
+        console.log(JSON.stringify(formInput));
         $("#form").submit(e => {
           e.preventDefault(); //preventing default submit for our form
           //AJAX will be used to post request data and will use json data to send back the reponse
@@ -73,7 +77,10 @@
             url: "/",
             type: "post",
             contentType: "application/json",
-            data: JSON.stringify($("#form").serializeArray()),
+            data: JSON.stringify({
+              email: document.getElementById("e"),
+              password: document.getElementById("pwd")
+            }),
             //basically we are sending the form data and serialiazing it and then using json.stringify, sending the json data to the server
             success: response => {
               //this will get invoked when we get successful response back to the server
