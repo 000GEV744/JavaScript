@@ -14,6 +14,10 @@ class UserServices {
     this.user.push(user);
     return this.user;
   }
+  nextId(){
+    console.log(this.user.length);
+    return  this.user.length+1;
+  }
 }
 
 module.exports.userService = UserServices;

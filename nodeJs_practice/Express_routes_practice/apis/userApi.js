@@ -11,6 +11,13 @@ route.get("/", (req, res) => {
   });
 });
 
+//end point to get the nextId 
+route.get('/nextId',(req,res)=>{
+  res.send({
+    nextId:userService.nextId()
+  });
+});
+
 //creating the endpoint for creating the users
 route.post("/add", (req, res) => {
   res.send({

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+    //get all the users before loading the html page 
+   var getUsers =()=>{
+        const baseUrl = "http://localhost:1269/users";
+        fetch(baseUrl,{
+            headers :{
+                'username': 'tech',
+                'pwd': 'tech'
+            },
+        }).then(res => res.json())
+        .then(data=>{
+            console.log(data);
+            createTable(data);
+        })
+    }
+
+    //now save the user to our db
+    var saveUser = ()=>{
+        //retrieve the nextId from the server
+        fetch('http://localhost:1269/users/nextId',{
+           headers :{
+                'username': 'tech',
+                'pwd': 'tech'
+            }
+        }).then(res => res.json())
+        .then(data =>{
+            console.log(data);
+            
+            if(data.nextId != undefined){
+
+                const id = data.nextId;
+                const name = document.getElementById('name').value; 
+                const email = document.getElementById('email').value;
+
+                 fetch('http://localhost:1269/users/add',{
+                     method :'POST',
+                 headers :{
+                'username': 'tech',
+                'pwd': 'tech',
+                 'content-type': 'application/json'
+            },
+            body:JSON.stringify({
+                            id: id,
+                            name : name,
+                            email : email
+                        })
+            }).then(res => res.json())
+            .then(data => {
+                 console.log(data);
+                 if(data.message == undefined){
+                    createTable(data);
+                 }
+                 else{
+                   alert(data.message);  
+                 }
+                
+            })
+            }else{
+                alert(data.message);  
+            }
+           
+        })
+
+    }
+
+    var createTable = (data)=>{
+        var str = `<table style="padding: .6%,.8%, 1%,1%; border:2px solid black;">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th colspan = "2">Actions</th>  
+                    </tr>`;
+        data.users.forEach(item => {
+            str += `<tr >
+                        <td>${item.name}</td>
+                        <td>${item.email}</td>
+                        <td><input type="button" id="save" onclick="delete(item.id)" value="Delete"/></td>
+                        <td><input type="button" id="save" onclick="edit(item.id)" value="Edit"/></td>
+                        </tr>`;
+        });
+        str+="</table>"
+        document.getElementById('users').innerHTML = str;
+    }
+
+    //delete the user 
+    function  delete(id) {
+        const delId = id;
+        fetch('http://localhost:1269/users/delete',{
+            
+        })
+    }
+    
+    </script>
+</head>
+<body onload="getUsers()">
+        <input type="text" id="name" placeholder="Name..."/>
+        <input type="text" id="email" placeholder="Email..."/>
+        <input type="button" id="save" onclick="saveUser()" value="SAVE"/>
+        <div id="users" style="padding-top: 4%;"> 
+</body>
+</html>

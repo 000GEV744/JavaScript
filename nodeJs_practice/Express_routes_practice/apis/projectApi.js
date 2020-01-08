@@ -13,7 +13,7 @@ route.get("/", (req, res) => {
 
 //creating the api to add a project
 route.post("/add", (req, res) => {
-  res.send({
+  res.send({  
     projects: projectService.addproject(req.body)
   });
 });
