@@ -27,6 +27,19 @@ class UserServices {
     });
     return this.user;
   }
+
+  editAndSave(id, name, email) {
+    console.log("inside editAndSave()");
+    this.user.forEach(u => {
+      if (u.id == id) {
+        console.log("user matched !");
+        u.email = email;
+        u.name = name;
+      }
+    });
+    console.log(this.user);
+    return this.user;
+  }
 }
 
 module.exports.userService = UserServices;

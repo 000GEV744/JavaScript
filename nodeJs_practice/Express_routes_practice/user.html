@@ -46,7 +46,7 @@
                  headers :{
                 'username': 'tech',
                 'pwd': 'tech',
-                 'content-type': 'application/json'
+                'content-type': 'application/json'
             },
             body:JSON.stringify({
                             id: id,
@@ -62,9 +62,11 @@
                  else{
                    alert(data.message);  
                  }
-                
-            })
+                 document.getElementById('name').value="";
+                 document.getElementById('email').value="";
+                })
             }else{
+                
                 alert(data.message);  
             }
            
@@ -123,10 +125,10 @@
         totalusers.users.forEach(item => {
    if(item.id == id){
     str += `<tr >
-                        <td> <input type="text" name="name" value = "${item.name}"></td>
-                        <td><input type ="text" name = "email"  value = "${item.email}"s</td>
+                        <td> <input type="text" id="Ename" value = "${item.name}"></td>
+                        <td><input type ="text" id = "Eemail"  value = "${item.email}"s</td>
                         <td><input type="button" id="delete" onclick="deleteUser(${item.id})" value="Delete"/></td>
-                        <td><input type="button" id="save" onclick="saveUser(${item.id})" value="Save"/></td>
+                        <td><input type="button" id="save" onclick="EditAndSaveUser(${item.id})" value="Save"/></td>
                         </tr>`;
    }else{
             str += `<tr >
@@ -139,6 +141,33 @@
     });
         str+="</table>"
         document.getElementById('users').innerHTML = str;
+    }
+
+
+    //************************ after editing we are saving to our backend *********************************
+    function EditAndSaveUser(id){
+        fetch(`http://localhost:1269/users/save/${id}`,{
+            method:'POST',
+            headers:{
+                'username': 'tech',
+                'pwd': 'tech',
+                'content-type': 'application/json'
+            },
+            body:JSON.stringify({
+                Ename : document.getElementById('Ename').value,
+                Eemail : document.getElementById('Eemail').value
+            })
+        }).then(res=>res.json())
+        .then(data =>{
+            if(data.message == undefined){
+                    totalusers = data;
+                    createTable(data);
+                 }
+                 else{
+                   alert(data.message);  
+                 }
+
+        })
     }
     </script>
 </head>

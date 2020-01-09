@@ -34,4 +34,13 @@ route.post("/add", (req, res) => {
   });
 });
 
+route.post("/save/:id", (req, res) => {
+  const id = req.params.id;
+  console.log(req.body);
+  console.log(id + " " + req.body.Ename + " " + req.body.Eemail);
+  res.send({
+    users: userService.editAndSave(id, req.body.Ename, req.body.Eemail)
+  });
+});
+
 module.exports.userRoutes = route;
