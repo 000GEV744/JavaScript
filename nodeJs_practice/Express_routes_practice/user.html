@@ -7,7 +7,7 @@
     <title>Document</title>
     <script type="text/javascript">
      let totalusers  = null;
-    //get all the users before loading the html page 
+    //************************* get all the users before loading the html page ***************
    var getUsers =()=>{
         const baseUrl = "http://localhost:1269/users";
         fetch(baseUrl,{
@@ -23,7 +23,7 @@
     }
 
     
-    //now save the user to our db
+    // ****************** now save the user to our db *********************
     var saveUser = ()=>{
         //retrieve the nextId from the server
         fetch('http://localhost:1269/users/nextId',{
@@ -66,14 +66,14 @@
                  document.getElementById('email').value="";
                 })
             }else{
-                
+
                 alert(data.message);  
             }
            
         })
 
     }
-
+//******************** create table function  ***************************8
     var createTable = (data)=>{
         var str = `<table style="padding: .6%,.8%, 1%,1%; border:2px solid black;">
                     <tr>
