@@ -11,10 +11,19 @@ route.get("/", (req, res) => {
   });
 });
 
-//end point to get the nextId 
-route.get('/nextId',(req,res)=>{
+//end point to get the nextId
+route.get("/nextId", (req, res) => {
   res.send({
-    nextId:userService.nextId()
+    nextId: userService.nextId()
+  });
+});
+
+//endpoint to delete the user
+route.get("/delete/:id", (req, res) => {
+  // for ex. /delete/12
+  const id = req.params.id;
+  res.send({
+    users: userService.deleteUser(id)
   });
 });
 

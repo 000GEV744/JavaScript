@@ -81,21 +81,36 @@
             str += `<tr >
                         <td>${item.name}</td>
                         <td>${item.email}</td>
-                        <td><input type="button" id="save" onclick="delete(item.id)" value="Delete"/></td>
-                        <td><input type="button" id="save" onclick="edit(item.id)" value="Edit"/></td>
+                        <td><input type="button" id="save" onclick="deleteUser(${item.id})" value="Delete"/></td>
+                        <td><input type="button" id="save" onclick="edit(${item.id})" value="Edit"/></td>
                         </tr>`;
         });
         str+="</table>"
         document.getElementById('users').innerHTML = str;
     }
 
-    //delete the user 
-    function  delete(id) {
-        const delId = id;
-        fetch('http://localhost:1269/users/delete',{
-            
+    // ************************ delete the user ********************************
+    function deleteUser(id){
+        // console.log(id)
+        // console.log(`http://localhost:1269/users/delete/${id}`)
+        fetch(`http://localhost:1269/users/delete/${id}`,{
+            headers :{
+                'username': 'tech',
+                'pwd': 'tech'
+            },
+        }).then(res =>res.json())
+        .then(data=>{
+            if(data.message == undefined){
+                    createTable(data);
+                 }
+                 else{
+                   alert(data.message);  
+                 }
         })
     }
+    
+
+    //******************* edit user details ****************
     
     </script>
 </head>

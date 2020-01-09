@@ -14,9 +14,18 @@ class UserServices {
     this.user.push(user);
     return this.user;
   }
-  nextId(){
+  nextId() {
     console.log(this.user.length);
-    return  this.user.length+1;
+    return this.user.length + 1;
+  }
+
+  deleteUser(id) {
+    this.user.forEach((item, index) => {
+      if (item.id == id) {
+        this.user.splice(index, 1);
+      }
+    });
+    return this.user;
   }
 }
 
