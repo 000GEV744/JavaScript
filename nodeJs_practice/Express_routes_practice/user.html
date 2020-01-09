@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script type="text/javascript">
+     let totalusers  = null;
     //get all the users before loading the html page 
    var getUsers =()=>{
         const baseUrl = "http://localhost:1269/users";
@@ -16,11 +17,12 @@
             },
         }).then(res => res.json())
         .then(data=>{
-            console.log(data);
+            totalusers = data;
             createTable(data);
         })
     }
 
+    
     //now save the user to our db
     var saveUser = ()=>{
         //retrieve the nextId from the server
@@ -53,8 +55,8 @@
                         })
             }).then(res => res.json())
             .then(data => {
-                 console.log(data);
                  if(data.message == undefined){
+                    totalusers = data;
                     createTable(data);
                  }
                  else{
@@ -82,7 +84,7 @@
                         <td>${item.name}</td>
                         <td>${item.email}</td>
                         <td><input type="button" id="save" onclick="deleteUser(${item.id})" value="Delete"/></td>
-                        <td><input type="button" id="save" onclick="edit(${item.id})" value="Edit"/></td>
+                        <td><input type="button" id="save" onclick="editUser(${item.id})" value="Edit"/></td>
                         </tr>`;
         });
         str+="</table>"
@@ -91,8 +93,6 @@
 
     // ************************ delete the user ********************************
     function deleteUser(id){
-        // console.log(id)
-        // console.log(`http://localhost:1269/users/delete/${id}`)
         fetch(`http://localhost:1269/users/delete/${id}`,{
             headers :{
                 'username': 'tech',
@@ -101,6 +101,7 @@
         }).then(res =>res.json())
         .then(data=>{
             if(data.message == undefined){
+                    totalusers = data;
                     createTable(data);
                  }
                  else{
@@ -111,7 +112,34 @@
     
 
     //******************* edit user details ****************
-    
+    function editUser(id){
+    console.log(totalusers)
+    var str = `<table style="padding: .6%,.8%, 1%,1%; border:2px solid black;">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th colspan = "2">Actions</th>  
+                    </tr>`;
+        totalusers.users.forEach(item => {
+   if(item.id == id){
+    str += `<tr >
+                        <td> <input type="text" name="name" value = "${item.name}"></td>
+                        <td><input type ="text" name = "email"  value = "${item.email}"s</td>
+                        <td><input type="button" id="delete" onclick="deleteUser(${item.id})" value="Delete"/></td>
+                        <td><input type="button" id="save" onclick="saveUser(${item.id})" value="Save"/></td>
+                        </tr>`;
+   }else{
+            str += `<tr >
+                        <td>${item.name}</td>
+                        <td>${item.email}</td>
+                        <td><input type="button" id="delete" onclick="deleteUser(${item.id})" value="Delete"/></td>
+                        <td><input type="button" id="edit" onclick="editUser(${item.id})" value="Edit"/></td>
+                        </tr>`;
+        }
+    });
+        str+="</table>"
+        document.getElementById('users').innerHTML = str;
+    }
     </script>
 </head>
 <body onload="getUsers()">
