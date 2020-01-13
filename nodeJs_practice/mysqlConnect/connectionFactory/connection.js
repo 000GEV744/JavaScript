@@ -1,18 +1,21 @@
 const mysql = require("mysql");
-var connection = mysql.createConnection({
+
+var mysqlconnection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "9436030916@anuj",
   database: "testimage"
 });
 
-connection.connect(function(err) {
+mysqlconnection.connect(function(err) {
   if (err) {
     console.log("error :" + err.message);
   } else {
-    console.log("connection established ");
+    console.log("connected as id " + mysqlconnection.threadId);
   }
 });
+
+module.exports.connection = mysqlconnection;
 
 /*if it is showing error continously while connectiing to the database then try this solution:
 
