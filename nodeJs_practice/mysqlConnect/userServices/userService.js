@@ -1,27 +1,50 @@
 const connection = require("../connectionFactory/connection").connection;
-let users;
+
 class userService {
-  constructor() {
-    getUsers(result => {
-      // add a callback to get the result because execution of query is happening asynchronously
-      if (result != undefined) {
-        this.users = result;
-      }
+  /* ************************ CRUD Operations ************************ */
+
+  //fetching all users
+  fetch_Users(callback) {
+    connection.query("select * from users_image", (err, result) => {
+      callback(err, result);
     });
+    connection.end();
   }
 
-  viewAll() {
-    console.log("inside vuewAll :: this.users : " + this.users);
-    return this.users;
+  //deleting the user
+  deleteUserById(id, callback) {
+    connection.query(
+      "delete from users_image where id = ?",
+      [id],
+      (err, result) => {
+        callback(err, result);
+      }
+    );
+    connection.end();
   }
-}
 
-function getUsers(callback) {
-  connection.query("select * from users_image", (error, result) => {
-    if (error) throw error;
-    console.log(result);
-    callback(result);
-  });
+  //update the user details
+  updateUser(id, fname, lname, mob_no, callback) {
+    connection.query(
+      "update users_image set first_name =?,last_name=?,mob_no=? where id =? ",
+      [fname, lname, mob_no, id],
+      (err, result) => {
+        callback(err, result);
+      }
+    );
+  }
+
+  //create users
+  addUser(fname, lname, mob_no, user_name, pwd, callback) {
+    connection.query(
+      "insert into users_image(first_name,last_name,mob_no,user_name,password)values(?,?,?,?,?)",
+      [fname, lname, mob_no, user_name, pwd],
+      (err, result) => {
+        callback(err, result);
+      }
+    );
+    connection.end();
+  }
 }
 
 module.exports.userService = userService;
