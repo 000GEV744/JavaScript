@@ -5,18 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.js"
-      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-      crossorigin="anonymous"
-    ></script>
+    <script src="./jquery-3.4.1.js" type="text/javascript"></script>
     <script type="text/javascript">
-    
-    /*here we'll discuss what is the difference between $(window).load and $(document).ready() functions
-       $(document).ready() is a jQuery event. it fires as soon as the DOM is loaded and ready to be manipulated by script.
+      $(window).on("load", function() {
+        alert("window loaded");
+      });
+      /*
+      With Jquery 3.x there were some breaking changes in the Library
+      Jquery Removed the load,unload and error event listeners completely, although they were deprecated long back in Jquery 1.8.
+      use .on to register your event.
+      */
 
-    */
-    
+      $(document).ready(function() {
+        alert("DOM loaded!");
+      });
+      /* window.load will wait for all the images, css, frames to be loaded whereas ready fucntion will fire 
+      soon after DOM is being loaded. */
     </script>
   </head>
   <body></body>
