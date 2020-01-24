@@ -10,15 +10,20 @@
       integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
       crossorigin="anonymous"
     ></script>
+  </head>
+  <body>
     <script type="text/javascript">
-      jQuery(document).ready(function() {
-        jQuery("#button1").click(function() {
+      //jquery is lightweight javascript library
+      $(document).ready(function() {
+        // jQuery("#button1").click(function() {  //instead of "jQuery" we can use "$" sign here!
+        $("#button1").click(function() {
           alert("jQuery tutorials");
+          //therefore by the time this peice of code is being executed all the HTML elements of the
+          //DOM are loaded into the browser DOM so that this script can find the id #button1 of button element  and attach the click event handler to it.
         });
       });
     </script>
-  </head>
-  <body>
+
     <input type="button" id="button1" value="click me" />
   </body>
 </html>

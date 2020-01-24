@@ -111,7 +111,24 @@
       for (let user of users) {
         console.log(user.id);
       }
+
+      //****************array.some()****************
+      /* The some() method checks if any of the elements in an array pass a test (provided as a function).
+       The some() method executes the function once for each element present in the array: 
+       If it finds an array element where the function returns a true value, 
+      some() returns true (and does not check the remaining values)*/
+      var ages = [3, 10, 18, 20];
+
+      function checkAdult(age) {
+        return age >= 18;
+      }
+
+      function myFunction() {
+        document.getElementById("demo").innerHTML = ages.some(checkAdult);
+      }
     </script>
   </head>
-  <body></body>
+  <body>
+    <div id="demo"></div>
+  </body>
 </html>
