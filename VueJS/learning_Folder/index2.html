@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Looping in Vue</title>
+  </head>
+  <body>
+    <b>Looping </b>
+    <div id="root">
+      <input v-model="newCat" />
+      <button v-on:click="addKitty" v-on:keyup.enter="addKitty"><!--we can replace "v-on:" with a shortcut "@"-->
+        + Add
+      </button>
+      <ul>
+        <li v-for="cat in cats">
+          {{cat.name | capitalize | kittify }} <!--filters, the values are piped to the filters names : capitalize and kittify -->
+          
+        </li>
+      </ul>
+      <h4>Computed ::</h4>{{kittyfiName}}
+
+      <h3>Component example ::</h3>
+  <cat-list :caties="cats">  </cat-list>
+    </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main2.js"></script>
+  </body>
+</html>

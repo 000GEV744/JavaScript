@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product App</title>
+  </head>
+  <body>
+    <!--1. add the library into the script tag to work with vue.js framework -->
+    <div id="root">
+      <h2>{{greeting}}</h2>
+      <input v-model="greeting" />
+      <br />
+      <br />
+
+      <!--If else Example-->
+
+      <h3>if else example:</h3>
+
+      <div v-if="count === 1">
+        Green
+      </div>
+      <div v-else-if="count === 2">
+        Blue
+      </div>
+      <div v-else>
+        Orange
+      </div>
+    </div>
+    <!--********************ROOT !*********************-->
+    <div id="root1">
+      <div>
+        <h2>
+          1. using double braces::&nbsp {{email}}
+        </h2>
+        <br />
+        <!--we can also uhse v-text for inner html context-->
+        2. using v-text for inner html
+        <p v-text="email"></p>
+        <!--can also use v-html directive as it will render them as plain HTML rather than encoding them.-->
+        <br />
+        3. using v-html for rendering html tag
+        <p v-html="email"></p>
+        <br />
+        4. using v-once directive
+        <!--it will render the elements only once-->
+        <p v-once>{{email}}</p>
+        <!-- <input v-model="email"  :class = "[email.length<3 ? 'red' : 'green']"> -->
+        <!--to dynamically toggle classes and we can use array syntax to toggle between classes. -->
+        <input v-model="email" :class="{red: email.length<3}" />
+        <br /><br />
+        <button onclick='alert("signed up ")' v-bind:disabled="email.length<=3">
+          submit
+        </button>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+  </body>
+</html>
